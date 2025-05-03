@@ -4,7 +4,7 @@ const path = require('path');
 function createWindow() {
     let win = new BrowserWindow({
         width: 800,
-        heigh: 800,
+        height: 800,
         icon: path.join(__dirname, '../assets/logo.ico')
     })
 
