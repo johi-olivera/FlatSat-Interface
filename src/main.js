@@ -2,14 +2,18 @@ const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
 function createWindow() {
-    let win = new BrowserWindow({
-        width: 800,
-        height: 800,
-        icon: path.join(__dirname, '../assets/logo.ico')
-    })
+  const win = new BrowserWindow({
+    show: false, // Oculta hasta que se maximice, evita parpadeo
+    icon: path.join(__dirname, '../assets/logo.ico'),
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false
+    }
+  });
 
-    win.loadFile(path.join(__dirname, '../views/login.html'));
-
+  win.maximize();       // Maximiza la ventana
+  win.show();           // Muestra la ventana maximizada
+  win.loadFile(path.join(__dirname, '../views/login.html'));
 }
 
 app.whenReady().then(createWindow);
