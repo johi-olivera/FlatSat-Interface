@@ -1,35 +1,35 @@
 # **🚀 FlatSat Interface**
 
-Esta aplicación fue creada con el objetivo de generar una interacción agradable entre la máquina y el usuario. En esta primera etapa, la idea es que se puedan visualizar los distintos módulos del FlatSat e interactuar con ellos de forma intuitiva.
+This application was created with the goal of generating a pleasant interaction between the machine and the user. In this first stage, the idea is to visualize the different FlatSat modules and interact with them in an intuitive way.
 
 > 💡 Work in progress...
 
 ---
 
-## **⚙️ Cómo ejecutar este proyecto**
-Para que este proyecto funcione correctamente en tu máquina, asegurate de seguir estos pasos:
+## **⚙️ How to run this project**
+To make this project work correctly on your machine, make sure to follow these steps:
 
-1. Abrí una terminal en la carpeta del proyecto y ejecutá:
+1. Open a terminal in the project folder and run:
   
         npm init -y
 
-    Esto inicializa el proyecto con un package.json.
+    This initializes the project with a package.json.
 
-2. Instalá Electron.js:
+2. Install Electron.js:
   
        npm install electron --save-dev
 
-3. Agregá script de inicio para Electron en package.json:
+3. Add a start script for Electron in package.json:
 
        "scripts": {
            "test": "echo \"Error: no test specified\" && exit 1",
            "start": "electron ."
        }
    
-    Esto te permite correr la app con:
+    This allows you to run the app with:
 
        npm start
 
 ---
 
-**🪐 Johanna Sayi Olivera | Estudiante de Ingeniería en Sistemas Espaciales**
+**🪐 Johanna Sayi Olivera | Buenos Aires, Argentina | Space Systems Engineering**
