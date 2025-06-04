@@ -1,56 +1,106 @@
-// Seleccionar elementos del DOM
+// Check login status
+function checkLogin() {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    if (!isLoggedIn && !window.location.href.includes('login.html')) {
+        window.location.href = '../login.html';
+    }
+}
+
+// Run check on page load
+checkLogin();
+
+// Logout function
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('username');
+    window.location.href = '../login.html';
+}
+
+// Add logout handler
+document.getElementById('logout-btn')?.addEventListener('click', logout);
+
+// Menu functionality
 const openMenu = document.getElementById('openmenu');
 const closeMenu = document.getElementById('closemenu');
 const nav = document.getElementById('nav');
 
-
-// Función para abrir el menú
-openMenu.addEventListener('click', () => {
+openMenu?.addEventListener('click', () => {
     nav.classList.add('visible');
 });
 
-// Función para cerrar el menú
-closeMenu.addEventListener('click', () => {
+closeMenu?.addEventListener('click', () => {
     nav.classList.remove('visible');
 });
 
-// Cerrar el menú si se hace clic fuera de él
 document.addEventListener('click', (e) => {
     if (!nav.contains(e.target) && !openMenu.contains(e.target)) {
         nav.classList.remove('visible');
     }
 });
 
-document.querySelectorAll('.module').forEach(module => {
-    module.addEventListener('click', function() {
-        // Eliminar la clase 'active' de todos los módulos
-        document.querySelectorAll('.module').forEach(m => m.classList.remove('active'));
-        // Agregar la clase 'active' al módulo clickeado
-        this.classList.add('active');
-        
-        // Hacer que los otros módulos estén en segundo plano
-        document.querySelectorAll('.module').forEach(m => {
-            if (m !== this) {
-                m.classList.add('background');
+// Module grid functionality
+const modulesContainer = document.querySelector('.modules-container');
+if (modulesContainer) {
+    const modules = document.querySelectorAll('.module');
+    let activeModule = null;
+    let originalPositions = [];
+
+    // Store original positions
+    modules.forEach(module => {
+        const rect = module.getBoundingClientRect();
+        originalPositions.push({
+            left: rect.left,
+            top: rect.top
+        });
+    });
+
+    modules.forEach((module, index) => {
+        module.addEventListener('click', function() {
+            if (activeModule === this) {
+                // If clicking the active module, reset everything
+                resetModules();
             } else {
-                m.classList.remove('background');
+                // Activate clicked module
+                if (activeModule) {
+                    resetModules();
+                }
+                
+                activeModule = this;
+                modules.forEach(m => m.style.transition = 'all 0.3s ease-in-out');
+                
+                // Make other modules static in their original positions
+                modules.forEach((m, i) => {
+                    if (m !== this) {
+                        m.style.position = 'fixed';
+                        m.style.left = originalPositions[i].left + 'px';
+                        m.style.top = originalPositions[i].top + 'px';
+                        m.classList.add('background');
+                    }
+                });
+
+                // Activate selected module
+                this.classList.add('active');
+                modulesContainer.classList.add('active');
             }
         });
-        
-        // Activar el fondo oscuro
-        document.querySelector('.modules-container').classList.add('active');
     });
-});
 
-// Restaurar el estado inicial cuando se hace clic en el fondo
-document.querySelector('.modules-container').addEventListener('click', function(e) {
-    if (e.target === this) {
-        // Eliminar la clase 'active' de todos los módulos
-        document.querySelectorAll('.module').forEach(m => {
-            m.classList.remove('active');
-            m.classList.remove('background');
+    // Reset function
+    function resetModules() {
+        modules.forEach(m => {
+            m.classList.remove('active', 'background');
+            m.style.position = '';
+            m.style.left = '';
+            m.style.top = '';
         });
-        // Desactivar el fondo oscuro
-        this.classList.remove('active');
+        modulesContainer.classList.remove('active');
+        activeModule = null;
     }
-});
+
+    // Close on background click
+    modulesContainer.addEventListener('click', function(e) {
+        if (e.target === this && activeModule) {
+            resetModules();
+        }
+    });
+}
