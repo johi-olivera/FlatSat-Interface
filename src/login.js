@@ -1,13 +1,12 @@
 // Simulated user database (in a real app, this would be in a secure database)
+const bcrypt = require('bcryptjs');
+
 const users = [
     {
-        username: 'admin',
-        // This is a hashed version of 'password123'
-        password: '$2a$10$CwTycUXWue0Thq9StjUM0uQxTJJp.yqeO4XbgzHl1RW.17CneAZEi'
+        username: 'johi',
+        password: bcrypt.hashSync('johi', 10)  // Esto sí es un hash
     }
 ];
-
-const bcrypt = require('bcryptjs');
 
 document.getElementById("login-form").addEventListener("submit", async function(event) {
     event.preventDefault();
@@ -19,7 +18,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
     const user = users.find(u => u.username === username);
     
     if (!user) {
-        errorMessage.textContent = "Invalid username or password";
+        errorMessage.textContent = "Invalid username";
         return;
     }
     
@@ -31,6 +30,6 @@ document.getElementById("login-form").addEventListener("submit", async function(
         localStorage.setItem('username', username);
         window.location.href = "../views/pages/home.html";
     } else {
-        errorMessage.textContent = "Invalid username or password";
+        errorMessage.textContent = "Invalid password";
     }
 });
