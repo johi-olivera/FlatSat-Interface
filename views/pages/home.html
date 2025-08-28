@@ -15,22 +15,26 @@
 
 <body>
 
-    <header>
-        <a href="home.html"><img class="logo" src="../../assets/img/logo.png" alt="Logo LabOSat"></a>
-
-    <!-- ...enlace a perfil eliminado... -->
-        <button id="openmenu" class="open-menu"><i class="bi bi-list"></i></button>        
-        <nav class="nav" id="nav">
-            <button id="closemenu" class="close-menu"><i class="bi bi-x"></i></i></button>
-            <ul class="nav-list">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="#">Missions</a></li>
-                <li><a href="button.html">Button</a></li>
-                <li><a href="about-us.html">About LabOSat</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+        <script>
+            fetch('../header.html')
+                .then(res => res.text())
+                .then(html => {
+                    const temp = document.createElement('div');
+                    temp.innerHTML = html;
+                    document.body.insertBefore(temp.firstElementChild, document.body.firstChild);
+                    // Asignar eventos del menú hamburguesa
+                    const openMenu = document.getElementById('openmenu');
+                    const closeMenu = document.getElementById('closemenu');
+                    const nav = document.getElementById('nav');
+                    openMenu?.addEventListener('click', () => nav.classList.add('visible'));
+                    closeMenu?.addEventListener('click', () => nav.classList.remove('visible'));
+                    document.addEventListener('click', (e) => {
+                        if (!nav.contains(e.target) && !openMenu.contains(e.target)) {
+                            nav.classList.remove('visible');
+                        }
+                    });
+                });
+        </script>
 
     <div class="modules-container">
         <div class="module">Module 1</div>

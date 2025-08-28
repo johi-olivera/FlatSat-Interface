@@ -1,8 +1,8 @@
 /* ================ LOGO HEADER ================ */
 .logo {
-    height: 100px;
+    height: 60px;
     width: auto;
-    max-width: 120px;
+    max-width: 160px;
     margin-right: 1rem;
 }
 /* ================ CONFIGURACIÓN GLOBAL ================ */
@@ -20,13 +20,16 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 2rem;
+    padding: 1.2rem 2rem;
     background-color: #0e0e2bc7;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
+    height: 80px;
+    min-height: 80px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
 
 .about-us h1 {
@@ -45,7 +48,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding-top: 60px;
+    padding-top: 88px;
     z-index: -1;
 }
 
