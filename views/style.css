@@ -1,9 +1,11 @@
 /* ================ LOGO HEADER ================ */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
 .logo {
     height: 60px;
     width: auto;
     max-width: 160px;
     margin-right: 1rem;
+    filter: drop-shadow(0 0 8px #00eaffcc);
 }
 /* ================ CONFIGURACIÓN GLOBAL ================ */
 
@@ -11,7 +13,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
+    letter-spacing: 0.5px;
 }
 
 /* ================ HEADER ================ */
@@ -21,7 +24,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 1.2rem 2rem;
-    background-color: #0e0e2bc7;
+    background: #0e0e2bd2;
     position: fixed;
     top: 0;
     left: 0;
@@ -29,7 +32,8 @@ header {
     z-index: 1000;
     height: 80px;
     min-height: 80px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    box-shadow: 0 2px 16px #00eaff33, 0 2px 8px rgba(0,0,0,0.12);
+    border-bottom: 2px solid #00eaff55;
 }
 
 .about-us h1 {
@@ -39,9 +43,9 @@ header {
 /* ================ BODY ================ */
 
 body {
-    background: url('../assets/img/space-background.webp') no-repeat center center fixed;
+    background: url('../assets/img/space-background.webp') no-repeat center center fixed, linear-gradient(120deg, #0a0a28 60%, #1a237e 100%);
     background-size: cover;
-    color: white;
+    color: #eaf6fb;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -50,6 +54,7 @@ body {
     min-height: 100vh;
     padding-top: 88px;
     z-index: -1;
+    text-shadow: 0 0 6px #00eaff44;
 }
 
 body::before {
@@ -90,14 +95,19 @@ body::before {
     align-items: end;
 }
 
+
 .nav-list li a {
     text-decoration: none;
-    color: #b0bad6;
+    color: #00eaff;
     font-size: 20px;
+    text-shadow: 0 0 8px #00eaff99, 0 0 2px #fff;
+    transition: color 0.2s, text-shadow 0.2s;
 }
 
+
 .nav-list li a:hover {
-    color: #0077b6;
+    color: #fff;
+    text-shadow: 0 0 16px #00eaff, 0 0 4px #fff;
 }
 
 /* ================ BOTONES DEL MENÚ ================ */
@@ -163,28 +173,71 @@ body::before {
 }
 
 .module {
-    background: linear-gradient(145deg, #2a3f5a, #1c2b3d);
-    color: white;
+    background: rgba(20, 30, 60, 0.75);
+    color: #eaf6fb;
     padding: 2rem;
-    border-radius: 15px;
-    font-size: 1.2rem;
+    border-radius: 22px;
+    font-size: 1.25rem;
     font-weight: bold;
-    transition: all 0.3s ease-in-out;
-    width: 250px;
-    height: 250px;
+    transition: all 0.4s cubic-bezier(.4,2,.6,1);
+    width: 260px;
+    height: 260px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     cursor: pointer;
     position: relative;
     z-index: 1;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 32px #00eaff55, 0 0 12px #1a237e99;
+    border: 2.5px solid #00eaff88;
+    outline: 2px solid #fff2;
+    backdrop-filter: blur(2.5px) saturate(1.2);
+    overflow: hidden;
+}
+.module::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: -40%;
+    width: 180%;
+    height: 180%;
+    background: repeating-radial-gradient(circle at 60% 40%, #00eaff33 0, #1a237e00 60%);
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+    animation: module-stars 8s linear infinite;
+}
+@keyframes module-stars {
+    0% { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(360deg) scale(1.05); }
+}
+.module .module-icon {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: #00eaff;
+    filter: drop-shadow(0 0 8px #00eaffcc);
+    z-index: 2;
+}
+.module .module-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    z-index: 2;
+}
+.module .module-desc {
+    font-size: 1.05rem;
+    color: #b0bad6;
+    z-index: 2;
 }
 
 .module:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transform: translateY(-12px) scale(1.06) rotate(-1deg);
+    box-shadow: 0 0 48px #00eaffee, 0 10px 32px #1a237e99, 0 10px 20px rgba(0, 0, 0, 0.4);
+    border-color: #00eaff;
+    filter: brightness(1.08) saturate(1.2);
 }
 
 .module.active {
@@ -199,10 +252,19 @@ body::before {
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
 }
 
+
 .module.background {
     opacity: 0.3;
     pointer-events: none;
     filter: grayscale(1);
+    visibility: visible;
+}
+
+/* Para mantener el espacio de los módulos aunque estén "ocultos" visualmente, puedes usar esta clase si quieres ocultar completamente pero sin mover los demás: */
+.module.invisible {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* ================ ABOUT US ================ */
@@ -232,24 +294,30 @@ body::before {
 }
 
 .about-content img {
-    max-width: 500px;
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-}
-
-.about-text {
-    max-width: 700px;
-    background: rgba(34, 49, 65, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-}
-
-.about-text h2 {
-    font-size: 2rem;
     color: #ffffff;
     margin-bottom: 10px;
     text-align: center;
+}
+
+/* Botón de login (migrado del bloque incorrecto) */
+.login-container button {
+    background: linear-gradient(90deg, #00eaff 60%, #1a237e 100%);
+    padding: 12px;
+    font-weight: bold;
+    transition: all 0.3s cubic-bezier(.4,2,.6,1);
+    width: 100%;
+    color: #0e0e2b;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 12px #00eaff99;
+    text-shadow: 0 0 2px #fff;
+}
+.login-container button:hover {
+    background: linear-gradient(90deg, #1a237e 60%, #00eaff 100%);
+    color: #fff;
+    box-shadow: 0 0 24px #00eaffcc;
+    transform: translateY(-2px) scale(1.03);
 }
 
 .about-text p {
