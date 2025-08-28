@@ -13,7 +13,7 @@ function createWindow() {
 
   win.maximize();       // Maximiza la ventana
   win.show();           // Muestra la ventana maximizada
-  win.loadFile(path.join(__dirname, '../views/login.html'));
+  win.loadFile(path.join(__dirname, '../views/pages/home.html'));
 }
 
 app.whenReady().then(createWindow);

@@ -1,13 +1,4 @@
 // Check login status
-function checkLogin() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (!isLoggedIn && !window.location.href.includes('login.html')) {
-        window.location.href = '../login.html';
-    }
-}
-
-// Run check on page load
-checkLogin();
 
 // Logout function
 function logout() {

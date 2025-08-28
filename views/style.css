@@ -1,3 +1,10 @@
+/* ================ LOGO HEADER ================ */
+.logo {
+    height: 100px;
+    width: auto;
+    max-width: 120px;
+    margin-right: 1rem;
+}
 /* ================ CONFIGURACIÓN GLOBAL ================ */
 
 * {
@@ -14,7 +21,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 1rem 2rem;
-    background-color: #0a0a28;
+    background-color: #0e0e2bc7;
     position: fixed;
     top: 0;
     left: 0;
@@ -38,7 +45,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding-top: 70px;
+    padding-top: 60px;
     z-index: -1;
 }
 
@@ -52,14 +59,6 @@ body::before {
     background: #0a0a28b3;
     z-index: -1;
 }
-
-/* ================ LOGO ================ */
-
-.logo {
-    max-width: 4rem;
-}
-
-/* ================ MENÚ ================ */
 
 .nav {
     display: none;
@@ -335,71 +334,4 @@ body::before {
 .error {
     color: red;
     margin-top: 10px;
-}
-
-/* ================ PROFILE ================ */
-
-.profile-icon {
-    font-size: 2rem;
-    color: #b0bad6;
-    text-decoration: none;
-}
-
-.profile-icon:hover,
-.open-menu:hover {
-    color: #0077b6;
-}
-
-.profile-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background: rgba(34, 49, 65, 0.9);
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-    width: 400px;
-    text-align: center;
-}
-
-.profile-container h2 {
-    color: white;
-    margin-bottom: 20px;
-}
-
-.profile-container p {
-    color: #b0bad6;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-}
-
-.profile-container .edit-button {
-    background-color: #0077b6;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-}
-
-.profile-container .edit-button:hover {
-    background-color: #005f8a;
-}
-
-.profile-name {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ffffff;
 }
